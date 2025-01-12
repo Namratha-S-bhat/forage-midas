@@ -1,0 +1,39 @@
+server:
+  port: 33400
+
+spring:
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+      group-id: midas
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+    initialization-mode: always
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+general:
+  kafka-topic: "financial-transaction"
+
+external:
+  incentive-api-url: http://localhost:8080/incentive

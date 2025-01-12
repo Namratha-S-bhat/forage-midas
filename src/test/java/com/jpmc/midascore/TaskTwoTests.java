@@ -37,5 +37,5 @@ class TaskTwoTests {
             logger.info("...");
         }
     }
-
 }
+
